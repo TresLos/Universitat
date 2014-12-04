@@ -7,6 +7,7 @@
 Diferencies divisibles ``Newton''
 ok	difdiv		Interpolacio, substitueix la f
 ok	difdivC		Lo mateix, pero aqui la sortida queda a c
+	difdivherm	Aquest amb pendent
 
 Obtenir resultats
 ok	horner
@@ -41,6 +42,17 @@ difdivC ( int n, double *x, double *f, double **ct )
 	*ct = c;
 }
 
+void
+difdivherm ( int m, double *x, double *f)
+{
+	int i, j;
+	for (j = n -3; j > 0; j -= 2)
+		f[j] = (f[j] - f[j -1]) / (x[j] - x[j -1]);
+	for (i = 1; i < n -1; i++)
+		for (j = n -1; j > i; j--)
+			f[j] = (f[j] - f[j -1]) / (x[j] - x[j - i -1]);
+}
+
 /*
    r ← cn,
    r ← r(z − xi) + ci, ∀i = n − 1, n − 2, . . . , 1, 0
@@ -50,7 +62,7 @@ difdivC ( int n, double *x, double *f, double **ct )
    f(z) = r
 */
 double
-horner( double z, int n, double *x, double *c )
+horner ( double z, int n, double *x, double *c )
 {
 	int i;
 	double r = c[n -1];
@@ -91,18 +103,3 @@ aCy ( int n, double min, double max )
 	return x;
 }
 
-/*
-   h, es l'increment equidistant
-   min, es el minim on vols comenzar
-   max, es el maxim on vols acabar
-*/
-void
-writeFile ( int n, double h, double min, double max, double *x, double *c )
-{
-	FILE *F;
-	double i;
-/* Extencio del gnuploat = .gp */
-	F = fopen ("out.gp", "w");
-	for (i = min; i <= max; i+=h)
-		fprintf (F, "%.20le\t%.20le\n", i, horner (i, n, x, c));
-}
