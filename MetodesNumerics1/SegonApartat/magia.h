@@ -26,6 +26,39 @@ double *DIV ( n )
 	}
 	return a;
 }
+/**
+  * GVM - Genera el Vector de forma Manual
+  *
+  * @param n
+  *	Es per definir la dimensio maxima
+  */
+double *GVM (n)
+{
+	double *a = DIV (n);
+	int i;
+
+	for (i = 0; i < n; i++)
+		scanf ("%le", &a[i]);
+	return a;
+}
+
+/**
+  * HGVM - ajuda (Help) Generador de Vector de forma Manual
+  *
+  * @param *v
+  *	Vector que contindra el resultat
+  * @return
+  *	Saber la dimensio del mateix vector
+  */
+int HGVM (double **v)
+{
+	int n;
+	printf ("\nEntreu la dimensio del vector:\n");
+	scanf ("%d", &n);
+	printf ("\nEntreu els valors del vector\n");
+	*v = GVM (n);
+	return n;
+}
 
 /**
   * CV - Copia el Vector
@@ -69,8 +102,9 @@ void difdiv ( int n, double *x, double *f )
 	int i, j;
 /* Enunciat: cal que totes les abscisses xi estiguin en ordre estrictament creixent. */
 	for (i = 1; i < n; i++)
-		if (x[i] > x[i -1])
+		if (x[i] < x[i -1])
 		{
+/* Curiosament, ens ha demostrat el profesor que l'odre no importava */
 			printf ("\nCom diu l'enunciat de l'entrega 8, com que no es estrictament creixent, no podem fer l'operacio demanada\n");
 			exit (1);
 		}
@@ -105,15 +139,56 @@ double horner( double z, int n, double *x, double *c )
 	return r;
 }
 
+/**
+  * polinomi interpolador d’Hermite
+  */
+void difdivherm( int n, double *tx, double *tf, double *g )
+{
+	int i, j;
+	double *x, *f;
+	x = DIV (2 * n);
+	f = DIV (2 * n);
+	for (i = 0; i < 2*n; i+=2)
+	{
+		x[i] = tx[i];
+		x[i +1] = tx[i];
+		f[i estic per aqui, no se que he de fer :)
+	}
+}
 
 
-
-
-
-
-
-
-
+/*
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                                             In Out
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+*/
+/**
+  * writeFile - On vols que escrigui "fitxer"
+  *
+  * @param n
+  *	Dimensio *x i *c
+  * @param h
+  *	Distancia en que vols calcular cada punt
+  * @param min
+  *	Valor inicial
+  * @param max
+  *	Valor final
+  * @param *x
+  *	Vector de les posicions
+  * @param *c
+  *	Vector del polinomi obtingut per diferencies dividides
+*/
+void
+writeFile ( int n, double h, double min, double max, double *x, double *c )
+{
+	FILE *F;
+	double i;
+/* Extencio del gnuploat = .gp */
+	F = fopen ("out.gp", "w");
+	for (i = min; i <= max; i+=h)
+		fprintf (F, "%.5le\t%.20le\n", i, horner (i, n, x, c));
+	fclose (F);
+}
 
 
 /*
