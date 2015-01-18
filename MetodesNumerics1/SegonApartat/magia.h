@@ -8,6 +8,17 @@
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 */
 
+/** FV - Free Vector
+  *
+  * Allibera memoria d'un vector
+  *
+  * @param *v
+  *	El que alliverarem
+  * @param m
+  *	El tamany del mateix |no necessari, pero aixi ho entenc millor|
+  */
+void FV (double *v, int m) { free (v); }
+
 /**
   * DIV - Declara sense Informacio la Variable
   *
@@ -48,16 +59,14 @@ double *GVM (n)
   * @param *v
   *	Vector que contindra el resultat
   * @return
-  *	Saber la dimensio del mateix vector
+  *	retorna la funcio desitjada
   */
-int HGVM (double **v)
+double *HGVM (int *n)
 {
-	int n;
 	printf ("\nEntreu la dimensio del vector:\n");
-	scanf ("%d", &n);
+	scanf ("%d", n);
 	printf ("\nEntreu els valors del vector\n");
-	*v = GVM (n);
-	return n;
+	return GVM (*n);
 }
 
 /**
@@ -102,9 +111,8 @@ void difdiv ( int n, double *x, double *f )
 	int i, j;
 /* Enunciat: cal que totes les abscisses xi estiguin en ordre estrictament creixent. */
 	for (i = 1; i < n; i++)
-		if (x[i] < x[i -1])
-		{
-/* Curiosament, ens ha demostrat el profesor que l'odre no importava */
+		if (x[i] <= x[i -1])
+		{ /* Curiosament, ens ha demostrat el profesor que l'odre no importava */
 			printf ("\nCom diu l'enunciat de l'entrega 8, com que no es estrictament creixent, no podem fer l'operacio demanada\n");
 			exit (1);
 		}
@@ -141,21 +149,63 @@ double horner( double z, int n, double *x, double *c )
 
 /**
   * polinomi interpolador d’Hermite
-  */
-void difdivherm( int n, double *tx, double *tf, double *g )
+  * 
+  * @param n
+  *	Tamany dels vectors entrans
+  * @param ttx
+  *	Coordenades
+  * @param ttf
+  *	Punts desitjats
+  * @param tg
+  *	Derivades de ttf, on aquest programa allivera automaticament de memoria
+  *//* Pel moment sembla que funciona correctament */
+void difdivherm( int n, double **ttx, double **ttf, double **tg )
 {
 	int i, j;
 	double *x, *f;
+	double *tx = *ttx; /* Aquest enrenou es perque sino no arribo a canviar els propis vecors */
+	double *tf = *ttf;
+	double *g  = *tg;
+
+/* Comprovar que els abscisses s'han donat en odre creixent */
+	for (i = 1; i < n; i++)
+		if (tx[i] <= tx[i -1])
+		{ /* Curiosament, ens ha demostrat el profesor que l'odre no importava */
+			printf ("\nCom diu l'enunciat de l'entrega 9, fem la comprovacio, si dona negativa, parem el programa\n");
+			exit (1);
+		}
+
 	x = DIV (2 * n);
 	f = DIV (2 * n);
-	for (i = 0; i < 2*n; i+=2)
+	for (i = 0; i < n; i++)
 	{
-		x[i] = tx[i];
-		x[i +1] = tx[i];
-		f[i estic per aqui, no se que he de fer :)
+		x[2 * i]	= tx[i];
+		x[2 * i +1]	= tx[i];
+		f[2 * i]	= tf[i];
+		f[2 * i +1]	= tf[i];
 	}
-}
+/* Alliberar memoria */
+	FV (tx, n);
+	*ttx = x;
+	FV (tf, n);
+	n = 2*n;
 
+/* Primer cas */
+	for (j = n -1; j > 2; j--)
+	{
+		f[j]	= g[j/2];
+		j--;
+		f[j]	= (f[j] - f[j -1]) / (x[j] - x[j -1]);
+	}
+	f[1] = g[0];
+	FV (g, n);
+
+/* Cas general, pero ara comencem amb un u */
+	for (i = 1; i < n -1; i++)
+		for (j = n -1; j > i; j--)
+			f[j] = (f[j] - f[j -1]) / (x[j] - x[j - i -1]);
+	*ttf = f;
+}
 
 /*
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -196,7 +246,7 @@ writeFile ( int n, double h, double min, double max, double *x, double *c )
                                                              Ajudat
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 */
-int difdivherm(int m, double *x, double *f){
+int difdivhermGisela(int m, double *x, double *f){
   int i, k, b=1;
   double v, tol=1e-10;
   /*k=1 primer pas*/
