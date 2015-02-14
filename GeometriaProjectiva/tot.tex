@@ -1,0 +1,55 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+
+
+
+\usepackage{dsfont}
+
+\newcommand{\red}[2]{{#1}#2}
+
+\newcommand{\R}{\mathds{R}}
+
+\begin{document}
+
+\section{Tema 1}
+Elements bàsics de la geometria projectiva lineal\\
+Espai projectiu i varietats lineals
+
+% a que se refereix quan parlem de la característica 2?
+\red{Definicio}{Un espai projectiu sobre un cos $K$ (que no estigui característica 2) és una tripleta. $(\R, E, \pi)$ on $\R$ és un conjunt, $E$ és un $K$-espai vectorial i $\pi:E\setminus\{\vec{0}\}\to\mathds{P}$}
+Tal que
+\begin{enumerate}
+\item $\pi$ exhaustiva
+\item Donat $\vec{u}, \vec{v} \in E\setminus\{0\}$
+\end{enumerate}
+$$\pi (\vec{u}) = \pi (\vec{v}) \Leftrightarrow <\vec{u}> = <\vec{v}>$$
+(Les antiimatges d'un $p \in \mathds{P}$ són subespai vectorials $\setminus\{0\}$ de dimenció 1)\\
+
+Als elements de $P$ li diem punts. Si tenim $\pi (\vec{u}) = p$ diem que $\vec{u}$ representa $p$.\\
+
+Definim dimensió de $\mathds{P} = dim E -1$\\
+Habitualment posem $dim E = n +1$
+\begin{itemize}
+\item n = 1 Diem $(\mathds{P}, E, \pi)$ recta projectiva
+\item n = 2 Diem $(\mathds{P}, E, \pi)$ pla projectiu
+\end{itemize}
+
+Abús de notació: Direm "sigui $\mathds{P}$ un espai projectiu..."\\
+
+Exemple 1 $E$ un espai vectoria de dimenció n+1. Definim ($E=\R^3, n=2, K=\R$)\\
+$\mathds{P}(E) = \{<u> | u \in E \setminus\{0\}\}$ = \{tots els subespais vectorials de dimenció 1\}\\
+
+Definim $\pi: E\setminus\{0\} \to \mathds{P}(E)$\\
+$u \mapsto <u>$\\
+$v \mapsto <v>$
+
+\begin{enumerate}
+\item És exhaustiu per definició $p \in \mathds{P}(E)$ és un subespai vectorial de dimenció 1 $<u>$, aleshores $\pi(u) = p$
+\item $\pi(u) = \pi(v) \Rightarrow <u> = <v>$
+\end{enumerate}
+Diem que $(\mathds{P}(E), E, \pi)$ és l'espai projectiu associat o el projectivitzat de $E$\\
+
+Exemple 2:
+
+\end{document}
