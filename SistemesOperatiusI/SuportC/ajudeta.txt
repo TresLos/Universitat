@@ -1,0 +1,40 @@
+vector definit:
+int a[5];
+
+
+Quan punters
+lol *a, *b;
+a = malloc (sizeof (lol) * n)
+b = a + 1
+------------
+llavors b[0] = a[1] i b[-1] = a[0].
+Es un truc per a tenir index negatius
+Free, s'ha de fer amb qui has cridat el malloc: free (a);
+
+WARNING
+Pots fer malloc de 5, i escriure per l'index 1000. Vigilar, perque ni compilador ni execucio diuen res
+Pero el desastres poden fer por. Pots estar escrivint en codi maquina...
+-----
+Compilar
+gcc -g fitxer
+Executar
+valgrind ./fitxer
+=====> Errors de memoria dinamica no ta mal
+
+
+Strings
+man string
+char a[20] = "hola mon"; // Vigilar i controlar ja que l'ultim caracter es el NULL, aixi que tens espai per a 20
+Imprimir
+%s a;
+Investigar un pelet
+man strlen
+man strcpy
+Pagina 15 Fitxer1, ens demana de provar de fer un parell de coses
+
+Quik sort
+pagina 18 se veu ilustrat com se fa. Necesita de la funcio comprar. I fa la magia desitjada
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+Vaig per el pdf A00
