@@ -1,0 +1,135 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amssymb}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\LL}{\mathcal{L}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\U}{\mathcal{U}}
+\newcommand{\PP}{\mathcal{P}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\section{Integrals de funcions de diverses variables}
+$f:[a,b] \to \R$ contínua, $f(x) \geq 0\quad \forall x \in [a, b]$\\
+$j=1\div n\quad l(I_{j,n}) = \frac{b-a}{n}$ % no clar ja que als funlls tinc un l(Ijn)...
+$$I_{j,n} = \left[a + (j-1) \frac{b-a}{n}, a + j \frac{b-a}{n}\right]$$
+$t_{jn} \in I_{jn}$
+$$\lim_{n\to\infty} \sum_{j=1}^n f(t_{j,n}) l(I_{j,n}) = R \int_a^bf(x) dx$$
+$R$ és la Integral de Riemann. On cada I, és un interval respecte les $x$'s.\\
+
+Cada $J_{k,n}$ és un interval respecte les $y$'s.\\
+$0 \leq f < M$
+$$J_{k,n} = \left((k-1)\frac{M}{N}, k\frac{M}{N}\right)$$
+$E_{k,n} = f^{-1}(J_{k,n})\qquad m(E_{k,n})$ = ``mesura'' d'$E_{k,n}$
+$$\lim_{n\to\infty}\sum_{k=1}^nm(E_{k,n})y_k = \LL\int_a^b f(x) dx$$
+$\LL$ és la integral de Lebesgue. Fa unes `piles', cosa que ens allibera del domini.
+
+\subsection{Mesura de conjunts}
+$\emptyset \neq X$ conjunt $(X = \R^n, n=1,2,\ldots)$\\
+$\M$ és una familia (conjunt) de subconjunts de $X$. $\M \subset \PP(x)$ és una $\sigma$-àlgebra en $X$ quan compleix
+\begin{enumerate}
+\item $X \in \M$
+\item $E \in \M \Rightarrow X\setminus E \in \M$
+\item $\{E_j\}_{j\geq1}$ succesió de $\M \Rightarrow \cap_{j=1}^\infty E_j \in \M$
+\end{enumerate}
+
+\subsubsection{Propietat}
+\begin{enumerate}
+\item $\emptyset \in \M$
+\item $\{E_j\}$ succesió de $\M \Rightarrow \cap_{j=1}^\infty E_j \in \M$
+\item $E_1, \ldots, E_n \in \M \Rightarrow \cup_{j=1}^n E_j, \quad \cap_{j=1}^n E_j \in \M$
+\item $A, B \in \M \Rightarrow A\setminus B \in \M$
+\end{enumerate}
+Una mesura en $X$ és una funció.\\
+$\mu: \M \to [0, +\infty]$; on $\M$ és una $\sigma$-àlgebra en $X$, que compleix
+\begin{enumerate}
+\item $\mu(\emptyset) = 0$
+\item $\mu$ és $\sigma$-additiva:$\left.\begin{tabular}{l}\{$E_j$\} succesió de $\M$\\$E_j \cap E_k = \emptyset$ si $j \neq k $\end{tabular}\right\} \Rightarrow \mu(\cup_{j=1}^\infty E_j) = \sum \mu(E_j)$
+\end{enumerate}
+
+\subsubsection{Exemple}
+$\sigma$-àlgebra:\\
+$\M = \{\emptyset, X\}$ és una $\sigma$-àlgebra en $X$\\
+$\M = \PP(x)$ és una $\sigma$-àlgebra en $X$\\
+
+Exemple (trivial) de mesura: Mesura comptadora en $X$\\
+$\mu:\PP(x) \to [0, +\infty]$\\$\mu(A) = \left\{\begin{tabular}{ll}$card A$	& si $A$ és finit\\$+\infty$	& si $A$ és infinit\end{tabular}\right.$
+
+\subsubsection{Propietats}
+\begin{enumerate}
+\item $\mu$ és addictiva: $E_1, \ldots, E_N \in \M \Rightarrow \mu (\cup_{j=1}^NE_j) = \sum_{j=1}^N\mu(E_j)$
+\item $A, B \in \M,\quad A\subset B\Rightarrow \left\{\begin{tabular}{l}$\mu(A) \leq \mu(B)$ Monotonia\\$\mu(B\setminus A) = \mu(B) - \mu(A)$ quan $\mu(A) < +\infty$\end{tabular}\right.$
+\item $\mu$ és $\sigma$-subaddictiva: \{$E_j$\} succesió de $\M \Rightarrow \mu (\cup_{j=1}^\infty E_j) \leq \sum_{j=1}^\infty\mu(E_j)$
+\item \{$E_j$\} succesió de $\M$ creixent $(E_j \subset E_{j+1}, \forall j \geq 1) \Rightarrow \mu(\cup_{j=1}^\infty E_j) = \lim_{j\to\infty} \mu (E_j)$
+\end{enumerate}
+
+\subsection{Mesura exterior}
+Una mesura exterior en $X$ és una funció $\mu^*:\PP(x) \to [0,+\infty]$ que compleix:
+\begin{enumerate}
+\item $\mu^*(\emptyset) = 0$
+\item $A \subset B \subset X \Rightarrow \mu^*(A) \leq \mu^*(B)$
+\item $\mu^*$ és $\sigma$-subaddictiva
+	$$\forall j \geq 1\quad E_j \subset X\quad \mu^*(\cup_{j=1}^\infty E_j) \leq \sum_{j=1}^\infty \mu(E_j)$$
+\end{enumerate}
+
+$\mu^*$ és una mesura exterior en $X$. $E\subset X$, $E$ és $\mu^*$mesurable quan descomposa addictivament (respecte $\mu*$) qualsevol subconjunt de $X$.\\
+$$\forall A \subset X\quad \mu^*(A) = \mu^*(A\cap E) + \mu^*(A\setminus E)$$
+
+\section{Teorema de Caratheodory}
+Si $\mu^*$ és una mesura exterior en $X$ llavors el conjunt $\M$ format per tots els conjunts $\mu^*$ mesurables és una $\sigma$-àlgebra en $X$ i $\mu = \mu^*/\M$ % que collons significa aquesta barra?
+és una mesura en $X$. A més a més$\{E \in \M: \mu(E) = 0\} = \{E \subset X: \mu^*(E) = 0\}$\\
+En particular, $\mu$ és una mesura completa, és a dir, si $E \in \M,\quad \mu(E) = 0$ llavors tot $E' \subset E$ compleix $E' \in \M$ i $\mu(E') = 0$
+
+\section{La mesura exterior de Lebergue i la mesura de Lebergue}
+Un interval en $\R^n$ és un conjunt $I$ de la forma $I = \prod_{i=1}^n I_i$ on cada $I_j$ és un interval acotat de $\R$\\
+n = 1, Intervals acotats de $\R$\\
+n = 2, Intervals acotats, $(), [], (] i [)$, plà `rectangle'\\
+n = 3, cub\\
+$I$ obert $\leftrightarrow \forall j = 1\div n\quad I_j$ obert\\
+$I$ tancat $\leftrightarrow \forall j = 1\div n\quad I_j$ tancat\\
+
+El volum de l'interval $I = \prod_{i=1}^nI_i$ és $v(I) = \prod_{i=1}^nl(I_i)$\\
+La mesura exterior de Lebesgue és $m^*: \PP(\R^n) \to [0, +\infty]$\\
+$A \subset \R^n \quad m^*(A) = \forall j \geq 1\quad I_j \subset \R^n$ tal que $A \subset \cup_{i=1}^\infty I_j$
+$$\forall j \geq 1 \quad E_j \subset X \quad \mu^*(\cup_{j=1}^\infty E_j) \leq \sum_{j=1}^\infty \mu^*(E_j)$$
+$$m^*(A) := \inf\left\{\sum_{j=1}^\infty \cup (I_j): \forall j \geq 1 \quad I_j \subset \R^n tq\quad A \subset \cup_{j=1}^\infty I_j\right\} \in [0,+\infty]$$
+$\Rightarrow m^*$ és una mesura exterior en $\R^n$ que és diu la mesura exterior de Lebesgue. I $I_j$ és un interval obert.
+\subsection{Propietats}
+\begin{enumerate}
+\item $I \subset \R^n$ interval, $I \subset A \subset \bar{I} \Rightarrow m^*(A) = v(I)$ en particular, $m^*(I) = v(I)$
+	\subitem $I$ interval, $a \in \R^n \quad a + I = \{a+x| x \in I\}$ és un interval; $v(a+I) = v(I)$
+\item $m^*(x+A) = m^*(A)\quad \forall A \subset \R^n$
+	\subitem $I = \prod_{i=1}^nI_i$
+\end{enumerate}
+$$-I = \{-x| x \in I\}\quad v(-I) = v(I)$$
+$E \subset \R^n$ és mesurable (segons Lebesgue) quan $E$ és $m^*$ mesurable és a dir: $\forall A \subset \R^n \quad m^*(A) = m^*(A\cap E) + m^*(A\setminus E)$\\
+$\M$ és el conjunt de tots els conjunts mesurables segons Lebesgue.\\
+
+% dubte del simbol /
+(T. de Caratheodory) $\Rightarrow \M$ és una $\sigma$-àlgebra en $\R^n$ i $m = m^*/\M$ és una mesura en $\R^n$
+$$\{E \in \M: m (E) = 0\} = \{E \subset \R^n: m^*(E) = 0\}$$
+i en particular $\left.\begin{tabular}{r}$E' \subset E$\\$E\in\M, m(E)=0$\end{tabular}\right\}\Rightarrow E' \in \M$ i $m(E') = 0$\\
+
+Exemples de conjunts mesurables: Els intervals els oberts són mesurables (segons Lebesgue)\\
+Els conjunts $G_\sigma$ de $\R^n$ (= intersseccions numerables d'oberts) són numerables (segons Lebesgue)\\
+Els conjunts $F_\sigma$ de $\R^n$ (= unions numerables de tancats) $E$ mesurable $\Rightarrow x + E$ són numerables $\forall x \in \R^n$
+$$m(x + E) = m(E) = m(-E)$$
+
+Teorema de caracterització dels conjunts mesurables segons Lebesgue en $\R^n$\\
+Si $E \subset \R^n$ llavors són equivalents
+\begin{enumerate}
+\item $E$ és mesurables
+\item $\forall \varepsilon > 0 \quad \exists \U$ obert $\subset \R^n$ tal que $E \subset \U$ i $m^*(\U\setminus E) < \varepsilon$
+\item $\forall \varepsilon > 0 \quad \exists C$ tancat $\subset \R^n$ tal que $C \subset E$  i $m^*(E \setminus C) < \varepsilon$
+\item $\forall \varepsilon > 0 \quad \exists \U$ obert, $C$ tancat $\subset \R^n$ tal que $C \subset E \subset \U$ i $m(\U \setminus C) < \varepsilon$
+\item $E = G\setminus Z$ on $G \subset \R^n$ és un conjunt $G_j-i \quad Z \subset \R^n$ és un conjunt de mesura zero
+\item $E = F \cup Z$, on $F \subset \R^n$ és un conjunt.
+	\subitem $F_\sigma, Z \subset \R^n$ és un conjunt de mesura zero.
+\end{enumerate}
+
+
+\end{document}
+Si $E \subset \R^n$ llavors són equivalents

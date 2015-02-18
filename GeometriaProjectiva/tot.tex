@@ -1,14 +1,18 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 
+\usepackage{mathtools}
+% les lletres sobre les fletxes
 
-
+\usepackage{ upgreek }
+% majuscules xD
 
 \usepackage{dsfont}
 
 \newcommand{\red}[2]{{#1}#2}
 
 \newcommand{\R}{\mathds{R}}
+\newcommand{\A}{\mathds{A}}
 
 \begin{document}
 
@@ -17,39 +21,84 @@ Elements bàsics de la geometria projectiva lineal\\
 Espai projectiu i varietats lineals
 
 % a que se refereix quan parlem de la característica 2?
-\red{Definicio}{Un espai projectiu sobre un cos $K$ (que no estigui característica 2) és una tripleta. $(\R, E, \pi)$ on $\R$ és un conjunt, $E$ és un $K$-espai vectorial i $\pi:E\setminus\{\vec{0}\}\to\mathds{P}$}
+\red{Definicio}{Un espai projectiu sobre un cos $K$ (que no tingui característica 2) és una tripleta. $(\R, E, \Pi)$ on $\mathds{P}$ és un conjunt, $E$ és un $K$-espai vectorial i $\Pi:E\setminus\{\vec{0}\}\to\mathds{P}$}
 Tal que
 \begin{enumerate}
-\item $\pi$ exhaustiva
+\item $\Pi$ exhaustiva
 \item Donat $\vec{u}, \vec{v} \in E\setminus\{0\}$
 \end{enumerate}
-$$\pi (\vec{u}) = \pi (\vec{v}) \Leftrightarrow <\vec{u}> = <\vec{v}>$$
+$$\Pi (\vec{u}) = \Pi (\vec{v}) \Leftrightarrow <\vec{u}> = <\vec{v}>$$
 (Les antiimatges d'un $p \in \mathds{P}$ són subespai vectorials $\setminus\{0\}$ de dimenció 1)\\
 
-Als elements de $P$ li diem punts. Si tenim $\pi (\vec{u}) = p$ diem que $\vec{u}$ representa $p$.\\
+Als elements de $P$ li diem punts. Si tenim $\Pi (\vec{u}) = p$ diem que $\vec{u}$ representa $p$.\\
 
 Definim dimensió de $\mathds{P} = dim E -1$\\
-Habitualment posem $dim E = n +1$
+Habitualment posem $dim E = n +1$ i aleshores $n = dim \mathds{P}$
 \begin{itemize}
-\item n = 1 Diem $(\mathds{P}, E, \pi)$ recta projectiva
-\item n = 2 Diem $(\mathds{P}, E, \pi)$ pla projectiu
+\item n = 1 Diem $(\mathds{P}, E, \Pi)$ recta projectiva
+\item n = 2 Diem $(\mathds{P}, E, \Pi)$ pla projectiu
 \end{itemize}
 
-Abús de notació: Direm "sigui $\mathds{P}$ un espai projectiu..."\\
+Abús de notació: Direm "sigui $\mathds{P}$ un espai projectiu$\ldots$"\\
 
-Exemple 1 $E$ un espai vectoria de dimenció n+1. Definim ($E=\R^3, n=2, K=\R$)\\
+Exemple 1 $E$ un espai vectorial de dimenció n+1. Definim ($E=\R^3, n=2, K=\R$)\\
 $\mathds{P}(E) = \{<u> | u \in E \setminus\{0\}\}$ = \{tots els subespais vectorials de dimenció 1\}\\
 
-Definim $\pi: E\setminus\{0\} \to \mathds{P}(E)$\\
+Definim $\Pi: E\setminus\{0\} \to \mathds{P}(E)$\\
 $u \mapsto <u>$\\
 $v \mapsto <v>$
 
 \begin{enumerate}
-\item És exhaustiu per definició $p \in \mathds{P}(E)$ és un subespai vectorial de dimenció 1 $<u>$, aleshores $\pi(u) = p$
-\item $\pi(u) = \pi(v) \Rightarrow <u> = <v>$
+\item És exhaustiu per definició $p \in \mathds{P}(E)$ és un subespai vectorial de dimenció 1: $<u>$, aleshores $\Pi(u) = p$
+\item $\Pi(u) = \Pi(v) \Rightarrow <u> = <v>$
 \end{enumerate}
-Diem que $(\mathds{P}(E), E, \pi)$ és l'espai projectiu associat o el projectivitzat de $E$\\
+Diem que $(\mathds{P}(E), E, \Pi)$ és l'espai projectiu associat o el projectivitzat de $E$\\
 
-Exemple 2:
+Exemple 2:\\
+$\A^2_k$ pla afí ($\A^2_k, E$, suma)\\
+Fixem un punt $O \in \A^2_k$\\
+$O^*$ = \{rectes per $O$\}, dimenció $O^*$ = 1\\
+eix $E\setminus\{0\} \to O^* = \mathds{P}$\\
+$\vec{u} \mapsto O + <\vec{u}>$\\
+
+Definició. Diem que dues estructures projectives $$(\mathds{P}, E, \Pi) i (\mathds{P}, E', \Pi')$$
+sobre un mateix conjunt $\mathds{P}$ són equivalents si existeix un isomorfisme
+$$\upvarphi: E \xrightarrow{\cong} E'$$
+de manera que $E\setminus\{0\} \xrightarrow{\upvarphi} E'\setminus\{0\}$ és commutativa\\
+$E\setminus\{0\} \to \mathds{P}\quad E'\setminus\{0\} \to \mathds{P}$\\
+
+Varietat lineal\\
+Definició: Una varietat lineal $V$ de $V$ $F\setminus\{0\} \subset E\setminus\{0\} \xrightarrow{F} \mathds{P}$ dimenció $K$ en un espai projectiu $(\mathds{P}, E, \Pi)$ és la imatge per $\Pi$ d'un subespai vectorial $F$ de dimenció $K+1\quad V=\Pi(F\setminus\{0\})$\\
+Posem $V = [F]$ per dir que $V$ és la varietat lineal associada a $F$\\
+
+Observació $\Pi(\vec{u}) = p \in \mathds{P}$ punt\\
+
+No ho fem servir\\
+$F = <\vec{u}>$\\
+$[F] = \{p\}$ varietat lineal de dimenció 0\\
+
+\begin{itemize}
+\item dimenció $V$ = 1 $\to V$ és una recta
+\item dimenció $V$ = 2 $\to V$ és un plà
+\item Codimenció $V$ = 1 $\Leftrightarrow$ dimenció $V$ = n-1 $\to V$ és un hiperplà
+\end{itemize}
+
+Codimenció de $V = dim \mathds{P} - dim V$\\
+
+Lema Si $V = [F]$ és una varietat lineal, aleshores $F\setminus\{0\} = \Pi^{-1}(V)$. En particular $V$ només té un subespai associat.\\
+
+Demostració\\
+$\subset$) $0 \neq u \in F$ Per definició $\Pi(u) \in \Pi (F\setminus\{0\})$\\
+$\supset$) Si $u \in \Pi^{-1}(V) \to \Pi(u) \in V = \Pi(F\setminus\{0\}$\\
+$\Rightarrow \exists V \in F\quad \Pi(v) = \Pi(u)$\\
+Per b), $<u> = <v> \to u \in F$\\
+
+Propietat de les varietats linelas
+\begin{itemize}
+\item $L_1 = [F_1] \subset L_2 = [F_2] \leftrightarrow F_1 \subset F_2$
+	\subitem $\to) \Pi^{-1}(L_1) \subset \Pi^{-1}(L_2) \leftrightarrow$ apliquem $\Pi$
+\item $L_1 \subset L_2 \xRightarrow{F_1 \subset F_2} dim L_1 = dim L_2$
+\end{itemize}
+Si $L_1 \subset L_2$ i $dim L_1 = dim L_2$, aleshores $L_1 = L_2$
 
 \end{document}

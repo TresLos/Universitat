@@ -1,0 +1,32 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[catalan]{babel}
+
+\usepackage{amsthm, amssymb, amsmath}
+\newtheorem{theorem}{Teorema}[section]%chapter
+\newtheorem{proposition}[theorem]{Proposició}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definició}
+\newtheorem{example}[theorem]{Exemple}
+\newtheorem{writing}[theorem]{Escriptura}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\PP}{\mathbb{P}}
+
+\begin{document}
+\tableofcontents
+\newpage
+
+\section{Elements bàsics de la geometria projectiva lineal}
+\subsection{Espais projectius}
+\begin{definition}
+Un espai projectiu sobre un cos $K$ (que no tingui característica 2) és una tripleta. $(\R, E, \Pi)$ on $\PP$ és un conjunt, $E$ és un $K$-espai vectorial i $\Pi:E\setminus\{\vec{0}\}\to\PP$
+Tal que
+\begin{enumerate}
+\item $\Pi$ exhaustiva
+\item Donat $\vec{u}, \vec{v} \in E\setminus\{0\}$
+	$$\Pi (\vec{u}) = \Pi (\vec{v}) \Leftrightarrow <\vec{u}> = <\vec{v}>$$
+\end{enumerate}
+\end{definition}
+
+\end{document}

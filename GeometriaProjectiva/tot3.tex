@@ -1,0 +1,215 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[catalan]{babel}
+
+
+\usepackage{amsthm, amssymb, amsmath, mathtools, MnSymbol}
+\newtheorem{theorem}{Teorema}[section]%chapter
+\newtheorem{proposition}[theorem]{Proposició}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definició}
+\newtheorem{example}[theorem]{Exemple}
+\newtheorem{coroline}[theorem]{Corolari}
+\newtheorem{observation}[theorem]{Observació}
+\newtheorem{writing}[theorem]{Escriptura}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\PP}{\mathbb{P}}
+
+\usepackage{enumitem}
+
+\begin{document}
+
+\begin{definition}[$\PP$]
+Espai projectiu $(\PP, E, \Pi)$
+\begin{enumerate}
+\item $\Pi$ exhaustiu
+\item $\Pi(u) = \Pi(v) \Leftrightarrow <u> = <v>$
+\end{enumerate}
+\end{definition}
+
+$E\setminus\{0\} \xrightarrow{\Pi} \PP \supset L$ varietat lineal
+\begin{itemize}
+\item $\dim L = \dim F -1$
+\item $Codim L = \dim \PP - \dim L$
+\item $\dim \PP \coloneqq \dim E -1$
+\item $F = \Pi^{-1}(L) \cup \{0\}$, gràcies a que és exhaustiu
+	\begin{itemize}
+	\item $L_1 = [F_1] \subset L_2 = [F_2] \leftrightarrow F_1 \subset F_2$
+	\item $L_1 \subset L_2 \quad \dim L_1 \leq \dim L_2$
+	\item $L_1 \subset L_2 \quad \dim L_1 = \dim L_2 \to L_1 = L_2$
+	\end{itemize}
+\end{itemize}
+
+\begin{observation}
+Si considerem $F = (0), \dim F = 0$ podem agafar $L = [F] = \emptyset \to \dim \emptyset = -1$
+\end{observation}
+
+\begin{observation}
+$\PP = [E]$ varietat lineal total, és l'única varietat de dimensió $n$.\\
+Si $L$ té dimensió $\left.\begin{array}{c}n: L \subset \PP\\\dim L = n = \dim \PP\end{array}\right\} L = \PP$
+\end{observation}
+
+\begin{observation}
+Sigui $L=[F]$ varietat lineal aleshores $\Pi_{|F-\{0\}}:F\setminus \{0\} \to L (= \Pi(F\setminus \{0\})$\\
+exhaustiu, $(L, F, \Pi/F\setminus \{0\})$ és un espai projectiu
+\end{observation}
+
+
+\subsection{Incidències de les varietats lineals}
+Siguin $L_1 = [F_1]$ i $L_2 = [F_2]$ varietats lineals en un espai projectiu fixat $\PP$
+\begin{proposition}
+$L_1 \cap L_2$ és una varietat lineal amb subespai associat $F_1 \cap F_2$. És a dir $L_1 \cap L_2 = [F_1 \cap F_2]$
+\end{proposition}
+\begin{proof}
+\begin{itemize}
+\item[$\subset$] $[F_1 \cap F_2] \subset L_1 \cap L_2, \quad p \in F_1 \cap F_2$
+	\begin{itemize}
+	\item $p = \Pi(u)$ tal que $u \in F_1 \cap F_2$ aleshores
+		\begin{itemize}
+		\item $u \in F_1 \Rightarrow \Pi(u) \in L_1$
+		\item $u \in F_2 \Rightarrow \Pi(u) \in L_2$
+		\end{itemize}
+	\item $p = \Pi(u) \in L_1 \cap L_2$
+	\end{itemize}
+\item[$\supset$] $p \in L_1 \cap L_2$
+	\begin{itemize}
+	\item $p \in L_1 \Rightarrow p = \Pi(u_1), u_1 \in F_1$
+	\item $p \in L_2 \Rightarrow p = \Pi(u_2), u_2 \in F_2$
+	\end{itemize}
+\item $\Pi(u_1) = p = \Pi(u_2) \Rightarrow <u_1> = <u_2>$
+\end{itemize}
+\end{proof}
+
+\begin{definition}
+\begin{itemize}
+\item $u_1, u_2 \in F_1 \cap F_2$
+\item $p \in [F_1 \cap F_2]$
+\item $L_1 = [F_1], \ldots, L_r = [F_r]$
+\subitem $L_1 \cap \ldots \cap L_r = [F_1 \cap, \ldots, \cap F_r]$
+\end{itemize}
+\end{definition}
+
+\begin{definition}(generat o joint)
+Donat $L_1 = [F_1], L_2 = [F_2]$ varietats lineals. La varietat més petita que conté $L_1 \cup L_2$.\\
+La denotarem per $L_1 \vee L_2$
+\end{definition}
+
+\begin{proposition}
+Es té que $L_1 \vee L_2 = [F_1 + F_2]$
+\end{proposition}
+\begin{proof}
+\begin{itemize}
+\item $[F_1 + F_2]$ és una varietat lineal
+\item $F_1 \subset F_1 + F_2 \Rightarrow [F_1] \subset [F_1 + F_2]$
+\item $F_2 \subset F_1 + F_2 \Rightarrow [F_2] \subset [F_1 + F_2]$
+\item Per tant
+	\begin{itemize}
+	\item $[F_1] \cup [F_2] = L_1 \cup L_2 \subset [F_1 + F_2]$
+	\item[Sigui] $M = [G]$ varietat lineal tal que $L_1 \cup L_2 \subset M$
+		\begin{itemize}
+		\item $\left.\begin{array}{c}
+		L_1 \subset M \leftrightarrow F_1 \subset G\\
+		L_2 \subset M \leftrightarrow F_2 \subset G\end{array}\right\}\Rightarrow F_1 + F_2 \subset G\quad [F_1 + F_2] \subset M$
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+\end{proof}
+
+\begin{observation}
+$L_i = [F_i]$\\$\vee L_i = [\sum F_i]$
+\end{observation}
+
+\begin{example}
+Si $p, q$ sós dos punts diferents.
+\begin{itemize}
+\item $p = [u] \neq 0, \quad q = [v] \neq 0$
+	\begin{itemize}
+	\item[$\leftrightarrow$] $<u> \neq <v>$
+	\item[$\leftrightarrow$] $u, v$ són linealment independents
+	\item[$\leftrightarrow$] $<u> + <v> = <u, v>$ té dimensió 2
+	\end{itemize}
+\item $p \vee q = [<u, v>]$ té dimensió 1
+\end{itemize}
+\end{example}
+
+\begin{theorem}(Fórmula de Grassmann)
+\begin{itemize}
+\item $L_1, L_2$ varietats lineals en un espai projectiu $\PP$
+	\begin{itemize}
+	\item $\dim L_1 \vee L_2 + \dim L_1 \cap L_2 = \dim L_1 + \dim L_2$
+	\end{itemize}
+\end{itemize}
+\end{theorem}
+\begin{proof}
+\begin{itemize}
+\item $L_1 = [F_1], L_2 = [F_2]$
+	$$(\dim (F_1 + F_2) -1) + (\dim (F_1 \cap F_2) -1) = (\dim F_1 -1) + (\dim F_2 -1)$$
+\end{itemize}
+\end{proof}
+
+\begin{coroline}
+\begin{enumerate}[label=\alph*)]
+\item $L$ varietat lineal i $p \notin L$
+	\subitem $\dim L \vee p = \dim L + 1$
+\begin{proof}
+\begin{itemize}
+\item $\dim L \cap p = -1$
+\item $\dim p = 0$
+	\begin{itemize}
+	\item $\dim L \vee p + \dim L \cap p = \dim L + \dim p$
+	\item $\dim L \vee p = \dim L +1$
+	\end{itemize}
+\end{itemize}
+\end{proof}
+\item $\PP$ espai projectiu de dimensió 2
+\begin{itemize}
+\item $l_1, l_2$ dues rectes $\neq$
+\item $l_1 \varsubsetneq l_1 \vee l_2 \Rightarrow l_1 \vee l_2 = \PP^2$
+\subitem Dues rectes en un plà diferents, sempre es tallen
+\end{itemize}
+\begin{proof}
+\begin{itemize}
+\item $\dim l_1 \vee l_2 = 2$
+\item $\dim l_1 = 1$
+\item $\dim l_2 = 1$
+\item $\dim l_1 \vee l_2 + \dim l_1 \cap l_2 = \dim l_1 + \dim l_2$
+	\subitem $2 + \dim l_1 \cap l_2 = 1 + 1 \Rightarrow \dim l_1 \cap l_2 = 0$
+\end{itemize}
+\end{proof}
+
+\item $L$ varietat lineal. $H$ hiperplà
+	\subitem Si $L \nsubset H$ aleshores $\dim L \cap H = \dim L -1$
+\begin{proof}
+\begin{itemize}
+\item Si $L \nsubset H$ aleshores punts $L$ fora de $H$
+\item $\PP = H \vee p \subset H \vee L = \PP$
+	\subitem $\dim H \vee L + \dim H \cap L = \dim H + \dim L$
+	\subitem $\dim H \vee L = \dim L -1$
+\end{itemize}
+\end{proof}
+
+\item Plà, recta a $\PP^3$
+	\subitem o bé recta $\subset$ hiperplà
+	\subitem o bé recta $\cap$ hiperplà = punt
+
+\item recta, recta a $\PP^3$, $l_1, l_2$ rectes diferents a $\PP^3$
+	\subitem Si tallen $l_1 \cap l_2$ = punt $\to \dim l_1 \vee l_2 = 2$
+	\subitem Si no tallen $l_1 \cap l_2 = \emptyset \to \dim l_1 \vee l_2 = 3$ ``creuen''
+\end{enumerate}
+\end{coroline}
+
+\begin{definition}(suplementaries)
+Dues varietats $L_1, L_2$ són suplementaries, si:
+\begin{itemize}
+\item $L_1 \vee L_2 = \PP$
+\item $L_1 \cap L_2 = \emptyset$
+\end{itemize}
+\end{definition}
+
+\begin{itemize}
+\item $[F] \cup [G] = [F + G]$
+\item $[F] \cap [G] = [F \cap G]$
+\end{itemize}
+
+\end{document}
