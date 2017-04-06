@@ -1,8 +1,9 @@
 filePDF = join.pdf
 fileEPS  = join.eps
+filePS  = join.ps
 
 ps:	$(filePS)
-
+eps:	$(fileEPS)
 pdf:	$(filePDF)
 
 join.eps: join.ps
